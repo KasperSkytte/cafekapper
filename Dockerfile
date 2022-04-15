@@ -31,17 +31,14 @@ RUN mkdir -p /src/cafekapper.dk/
 COPY cafekapper.dk/ /src/cafekapper.dk/
 WORKDIR /src/cafekapper.dk/
 
-# Must bind to 0.0.0.0 instead of default 127.0.0.1
-# to be able expose to other containers, fx reverse-proxy
-ENTRYPOINT ["hugo"]
-CMD [ \
+# build and serve site, including content marked as draft
+# bind to 0.0.0.0 instead of default 127.0.0.1 
+ENTRYPOINT [ \
+    "hugo", \
     "server", \
     "-d", \
     "/www/cafekapper.dk", \
-    "--baseURL", \
-    "https://cafekapper.dk", \
-    "--port", \
-    "443", \
+    "-D", \
     "--bind", \
     "0.0.0.0" \
 ]
