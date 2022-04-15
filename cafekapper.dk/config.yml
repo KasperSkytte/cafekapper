@@ -63,9 +63,7 @@ params:
     editPost:
         URL: "https://github.com/KasperSkytte/cafekapper.dk/tree/main/cafekapper.dk/content"
         Text: "Suggest Changes" # edit text
-        appendFilePath: true # to append file path to Edit linkparams:
-    assets:
-        disableHLJS: true
+        appendFilePath: true # to append file path to Edit link
 
 
 markup:
