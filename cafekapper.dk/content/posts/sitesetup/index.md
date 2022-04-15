@@ -30,3 +30,4 @@ Push to GitHub, and GitHub actions will rebuild container
 
 SWAG + docker + watchtower
 
+ouroboros/watchtower/diun
