@@ -36,4 +36,15 @@ WORKDIR /src/cafekapper.dk/
 
 # Must bind to 0.0.0.0 instead of default 127.0.0.1
 # to be able expose to other containers, fx reverse-proxy
-CMD ["hugo", "server", "--bind", "0.0.0.0"]
+ENTRYPOINT ["hugo"]
+CMD [ \
+    "server", \
+    "-d", \
+    "/www/cafekapper.dk", \
+    "--baseURL", \
+    "https://cafekapper.dk", \
+    "--port", \
+    "443", \
+    "--bind", \
+    "0.0.0.0" \
+]
