@@ -2,7 +2,7 @@
 // https://github.com/microsoft/vscode-dev-containers/tree/v0.231.4/containers/hugo
 {
 	"name": "cafekapper.dk (Hugo)",
-	"initializeCommand": "docker pull ghcr.io/kasperskytte/cafekapper.dk:main",
+	"initializeCommand": "docker pull ghcr.io/kasperskytte/cafekapper.dk:latest",
 	"build": {
 		"context": "..",
 		"dockerfile": "../Dockerfile"
