@@ -27,9 +27,6 @@ RUN apt-get update && apt-get install -y ca-certificates openssl git curl && \
     rm ${VERSION}.tar.gz && \
     mv hugo /usr/bin/hugo
 
-# Hugo dev server port
-EXPOSE 1313
-
 RUN mkdir -p /src/cafekapper.dk/
 COPY cafekapper.dk/ /src/cafekapper.dk/
 WORKDIR /src/cafekapper.dk/
