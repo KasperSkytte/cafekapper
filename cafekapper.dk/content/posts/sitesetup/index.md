@@ -31,7 +31,7 @@ That's it. After committing the file GitHub Actions will start the workflow imme
 
 ## Deploying the site automatically
 
-While I could have made my life easier and skip all the fun container stuff and just [host the Hugo site directly on GitHub](https://gohugo.io/hosting-and-deployment/hosting-on-github/) without using containers, I wanted to be able to host the site myself and on my own domain. That was part of the reason to use a container in the first place. I had already setup an nginx reverse-proxy using the awesome [LinuxServer SWAG](https://docs.linuxserver.io/general/swag) docker image to serve all my other self-hosted services, so adding a few extra tasks to an [ansible](https://www.ansible.com/overview/how-ansible-works) role to manage the Hugo container was simple. To automatically update the site with new changes I chose a simple polling solution using [watchtower](https://containrrr.dev/watchtower/) to pull the new image and restart the container with the new image at a specified polling interval, which I've set to every day at 6 in the morning. It can also be set to poll as often as every second, but that's overkill for this purpose. If I want to publish the changes immediately I can always just run watchtower manually with `--run-once` on the server.
+While I could have made my life easier and skip all the fun container stuff and just [host the Hugo site directly on GitHub](https://gohugo.io/hosting-and-deployment/hosting-on-github/) without using containers, I wanted to be able to host the site myself and on my own domain. That was part of the reason to use a container in the first place. I had already setup an nginx reverse-proxy using the awesome [LinuxServer SWAG](https://docs.linuxserver.io/general/swag) docker image to serve all my other self-hosted services, so adding a few extra tasks to the current reverse-proxy [ansible](https://www.ansible.com/overview/how-ansible-works) role to also manage the Hugo container was simple.
 
 ```yaml
 - name: "Create network swag_network"
@@ -67,7 +67,7 @@ While I could have made my life easier and skip all the fun container stuff and 
       - name: swag_network
 
 
-# probably a task or two here to add a configuration 
+# probably a task or two here to add a reverse-proxy configuration 
 # file for the new site and restart SWAG
 
 - name: "Deploy watchtower container"
@@ -77,12 +77,15 @@ While I could have made my life easier and skip all the fun container stuff and 
     restart_policy: unless-stopped
     image: containrrr/watchtower:latest
     env:
-      WATCHTOWER_SCHEDULE: "0 6 * * *"
+      WATCHTOWER_SCHEDULE: "0 * * * *"
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock"
     command: hugo #specific containers to watch and update+restart
+
+# I'll spare you the rest
 ```
 
+To automatically update the site with new changes I chose a simple polling solution using [watchtower](https://containrrr.dev/watchtower/) to pull the new image and restart the container with the new image at a specified polling interval, which I've set to every hour. It can also be set to poll as often as every second, but that's overkill for this purpose. If I want to publish the changes immediately I can always just run watchtower manually with `--run-once` on the server.
 ## Time to add some content
 
 Now I can start adding new posts with ease and never worry about this again.

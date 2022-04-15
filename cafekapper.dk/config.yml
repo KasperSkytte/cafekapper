@@ -53,7 +53,7 @@ params:
     ShowBreadCrumbs: true
     ShowCodeCopyButtons: true
     ShowToc: false
-    # comments: false
+    comments: true
     socialIcons:
         - name: github
           url: "https://github.com/KasperSkytte"
