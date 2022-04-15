@@ -39,8 +39,8 @@ outputs:
         - JSON
 
 params:
-    env: production # to enable google analytics, opengraph, twitter-cards and schema.
-    description: "hallohej"
+    env: production
+    description: "Just a personal blog where I post whatever I feel like"
     author: Kasper Skytte Andersen
 
     defaultTheme: auto
