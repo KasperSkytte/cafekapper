@@ -39,7 +39,6 @@ ENTRYPOINT [ \
     "server", \
     "-d", \
     "/www/cafekapper.dk", \
-    "-D", \
     "--bind", \
     "0.0.0.0" \
 ]
