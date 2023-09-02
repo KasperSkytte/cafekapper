@@ -21,7 +21,7 @@ For R projects, I always use the [renv](https://rstudio.github.io/renv/index.htm
 {
   "name": "R (4.3)",
   "image": "ghcr.io/rocker-org/devcontainer/r-ver:4.3",
-  "postCreateCommand": "R -q -e 'renv::consent(provided = TRUE); renv::restore(prompt = FALSE)'",
+  "postCreateCommand": "R -q -e 'install.packages('renv'); renv::consent(provided = TRUE); renv::restore(prompt = FALSE)'",
   "remoteEnv": {
     "RENV_PATHS_CACHE": "/renv/cache"
   },
