@@ -8,7 +8,7 @@ To serve the site use `docker run -p 1313:1313 ghcr.io/kasperskytte/cafekapper.d
 - `cd cafekapper.dk/`
 - Develop in Dev Container through VSCode. Start website preview with `hugo server -D`, access at <http://localhost:1313/>.
 - Add new posts from template with `hugo new posts/name.md`.
-- Remember to set `draft: false` in preamble of posts to publish.
+- Remember to set `draft: false` in the preamble of posts to publish.
 
 ## Tips
 [Shortcode](cafekapper.dk/layouts/shortcodes/gist.html) to add a GitHub gist to a post use `{{< gist gist_sha1_hash >}}`.
