@@ -23,6 +23,8 @@ Simply choose an R version, and ensure an `renv.lock` file is present in the pro
 {
   "name": "R (4.2)",
   "image": "ghcr.io/rocker-org/devcontainer/r-ver:4.2",
+  // Ensure renv cache folder exists on the host before stating container
+  "initializeCommand": "mkdir -p ${localEnv:HOME}${localEnv:USERPROFILE}/.cache/R/renv/cache/",
   "postCreateCommand": {
     "install renv and restore library from lock file": "DEBIAN_FRONTEND=noninteractive R -e 'install.packages(\"renv\", lib = \"/usr/local/lib/R/site-library\"); renv::consent(provided = TRUE); renv::restore(prompt = FALSE)'",
     "Install additional nice-to-have packages": "DEBIAN_FRONTEND=noninteractive sudo apt-get update -y && sudo apt-get install -y --no-install-recommends --no-install-suggests libxml2-dev libcairo2-dev libgit2-dev libxt-dev libjpeg-dev libcurl4-openssl-dev libssl-dev libharfbuzz-dev libfribidi-dev libtiff5-dev pandoc"
